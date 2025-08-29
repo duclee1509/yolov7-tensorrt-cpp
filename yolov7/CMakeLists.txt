@@ -25,21 +25,23 @@ else()
   link_directories(/usr/local/cuda/lib64)
 
   # tensorrt
-  include_directories(/home/nvidia/TensorRT-8.2.5.1/include)
-  link_directories(/home/nvidia/TensorRT-8.2.5.1/lib)
+  include_directories(${PROJECT_SOURCE_DIR}/TensorRT-8.6.1.6.Linux.x86_64-gnu.cuda-12.0/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/include)
+  link_directories(${PROJECT_SOURCE_DIR}/TensorRT-8.6.1.6.Linux.x86_64-gnu.cuda-12.0/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/lib)
 endif()
 
 add_library(myplugins SHARED ${PROJECT_SOURCE_DIR}/plugin/yololayer.cu)
+set_target_properties(myplugins PROPERTIES CUDA_ARCHITECTURES 86)
 target_link_libraries(myplugins nvinfer cudart)
 
 find_package(OpenCV)
 include_directories(${OpenCV_INCLUDE_DIRS})
+message(STATUS "OpenCV version: ${OpenCV_VERSION}")
 
 file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.cu)
 add_executable(yolov7 main.cpp ${SRCS})
+set_target_properties(yolov7 PROPERTIES CUDA_ARCHITECTURES 86)
 
 target_link_libraries(yolov7 nvinfer)
 target_link_libraries(yolov7 cudart)
 target_link_libraries(yolov7 myplugins)
 target_link_libraries(yolov7 ${OpenCV_LIBS})
-
