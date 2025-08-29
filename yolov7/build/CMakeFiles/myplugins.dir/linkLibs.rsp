@@ -1,0 +1,1 @@
+  -L"/home/bv-sps/Downloads/TensorRT-8.6.1.6.Linux.x86_64-gnu.cuda-12.0/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/lib"  -Wl,-rpath,/home/bv-sps/Downloads/TensorRT-8.6.1.6.Linux.x86_64-gnu.cuda-12.0/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/lib -lnvinfer -lcudart -lcudadevrt -lcudart_static -lrt -lpthread -ldl 
