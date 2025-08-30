@@ -1,0 +1,1 @@
+  -L"/home/bv-sps/00.Development/duc.le-minh/yolov7-tensorrt-cpp/TensorRT-8.6.1.6/targets/x86_64-linux-gnu/lib"  -lcudadevrt -lcudart_static -lrt -lpthread -ldl 
